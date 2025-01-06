@@ -62,7 +62,7 @@ products.forEach((product)=>{
 
 
 
-function updateCartQuantity() {
+ function updateCartQuantity() {
   let cartQuantity = 0;
 
   cart.forEach((cartItem)=>{

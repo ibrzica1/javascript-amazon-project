@@ -1,3 +1,4 @@
+
 import { cart, removeFromCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
@@ -14,6 +15,18 @@ if (product.id === productId) {
   matchingProduct = product;
 }
 });
+
+function checkoutQuantity() {
+  let cartQuantity = 0;
+
+  cart.forEach((cartItem)=>{
+    cartQuantity+= cartItem.quantity;
+  });
+  document.querySelector('.js-checkout-quantity').
+  innerHTML = cartQuantity;    
+
+}
+checkoutQuantity();
 
 cartSummaryHTML += `
 
