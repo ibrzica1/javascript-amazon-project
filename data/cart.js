@@ -1,3 +1,5 @@
+import { checkoutQuantity } from "../scripts/utils/cartUtils.js";
+
 export let cart = JSON.parse(localStorage.getItem('cart'));
 if(!cart) {
 cart =
@@ -49,6 +51,7 @@ export function removeFromCart(productId) {
   });
 
   cart = newCart;
-
+  
+  checkoutQuantity(cart);
   saveToStorage();
 }
