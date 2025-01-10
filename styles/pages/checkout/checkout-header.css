@@ -101,3 +101,20 @@
     width: auto;
   }
 }
+
+.save-quantity-link {
+  display: none;
+}
+
+.quantity-input {
+  display: none;
+}
+
+.is-editing-quantity {
+  .quantity-input {
+    display: initial;
+  }
+  .save-quantity-link {
+    display: initial;
+  }
+}
