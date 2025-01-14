@@ -6,13 +6,9 @@ import { formatCurrency } from "../utils/money.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+import { isWeekend } from "../utils/dates.js";
 
-function isWeekend(dayJS) {
-if (dayJS === 'Saturday' || dayJS === 'Sunday') {
-  return 'Its Weekend';
-}
-else {return dayJS};
-}
+
 
 
 export function renderOrderSummary() {
@@ -150,6 +146,7 @@ export function renderOrderSummary() {
     );
     container.remove();
 
+    renderOrderSummary();
     renderPaymentSummary();
   });
   });
