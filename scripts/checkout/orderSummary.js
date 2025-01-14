@@ -2,10 +2,17 @@ import { checkoutQuantity} from "../utils/cartUtils.js";
 import { cart, removeFromCart, updateQuantity, updateDeliveryOption } from "../../data/cart.js";
 import { products, getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
-import { hello } from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
+
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+
+function isWeekend(dayJS) {
+if (dayJS === 'Saturday' || dayJS === 'Sunday') {
+  return 'Its Weekend';
+}
+else {return dayJS};
+}
 
 
 export function renderOrderSummary() {
@@ -32,6 +39,7 @@ export function renderOrderSummary() {
   const dateString = deliveryDate.format(
     'dddd, MMMM D'
   );
+  const exerciseDayJS = dayjs().subtract(1,'month').format('dddd');
 
   cartSummaryHTML += `
 
@@ -74,9 +82,12 @@ export function renderOrderSummary() {
           Choose a delivery option:
         </div>
         ${deliveryOptionsHTML(matchingProduct, cartItem)}
+        
       </div>
+       ${isWeekend(exerciseDayJS)}
     </div>
   </div>
+  
   `;
   });
 
@@ -92,6 +103,7 @@ export function renderOrderSummary() {
     const dateString = deliveryDate.format(
       'dddd, MMMM D'
     );
+   
 
     const priceString = deliveryOption.priceCents === 0
     ? 'FREE'
@@ -115,6 +127,7 @@ export function renderOrderSummary() {
               <div class="delivery-option-price">
                 ${priceString} Shipping
               </div>
+             
             </div>
           </div>
     `
