@@ -9,16 +9,20 @@ export function isWeekend(dayJS) {
   }
 
   export function skipWeekend(dayJS) {
-    
-    if (dayJS === 'Saturday'){
-      return dayJS.add(2,'days');
+    const deliveryDateCheck = dayJS.format('dddd');
+
+    if (deliveryDateCheck === 'Saturday'){
+      
+      return dayJS.add(2,'days').format('dddd, MMMM D');
+      
     }
-    else if (dayJS === 'Sunday') {
-      return dayJS.add(1,'days');
+    else if (deliveryDateCheck === 'Sunday') {
+      return dayJS.add(1,'days').format('dddd, MMMM D');
     }
     else {
-      return dayJS;
+      return dayJS.format('dddd, MMMM D');
     }
+     
   }
 
  

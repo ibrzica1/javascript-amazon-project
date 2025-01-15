@@ -85,17 +85,16 @@ export function renderOrderSummary() {
   let html = '';
 
   deliveryOptions.forEach((deliveryOption)=> {
-    const today = dayjs().add(1,'days');
+    const today = dayjs();
     let deliveryDate = today.add(
       deliveryOption.deliveryDays,
       'days'
     );
-    /*let checkWeekend = deliveryDate.format('dddd');
-    deliveryDate = skipWeekend(checkWeekend); */
     
-     const dateString = deliveryDate.format(
-      'dddd, MMMM D'
-    );
+    const dateString = skipWeekend(deliveryDate); 
+    console.log(dateString);
+    
+    
 
     const priceString = deliveryOption.priceCents === 0
     ? 'FREE'
