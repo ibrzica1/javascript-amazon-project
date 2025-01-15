@@ -4,9 +4,10 @@ import { products, getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
+import { calculateDeliveryDate, deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
 import { isWeekend, skipWeekend } from "../utils/dates.js";
+import { rendercheckoutHeader } from "./checkoutHeader.js";
 
 
 
@@ -27,21 +28,14 @@ export function renderOrderSummary() {
 
   const deliveryOption = getDeliveryOption(deliveryOptionId);
 
-  const today = dayjs();
-  const deliveryDate = today.add(
-    deliveryOption.deliveryDays,
-    'days'
-  );
-  const dateString = deliveryDate.format(
-    'dddd, MMMM D'
-  );
+  
   const exerciseDayJS = dayjs().subtract(1,'month').format('dddd');
 
   cartSummaryHTML += `
 
   <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
     <div class="delivery-date">
-      Delivery date: ${dateString}
+      Delivery date: ${calculateDeliveryDate(deliveryOption)}
     </div>
 
     <div class="cart-item-details-grid">
@@ -150,6 +144,7 @@ export function renderOrderSummary() {
 
     renderOrderSummary();
     renderPaymentSummary();
+    rendercheckoutHeader(cart);
   });
   });
 
