@@ -8,4 +8,17 @@ export function isWeekend(dayJS) {
   else {return dayJS};
   }
 
+  export function skipWeekend(dayJS) {
+    
+    if (dayJS === 'Saturday'){
+      return dayJS.add(2,'days');
+    }
+    else if (dayJS === 'Sunday') {
+      return dayJS.add(1,'days');
+    }
+    else {
+      return dayJS;
+    }
+  }
+
  

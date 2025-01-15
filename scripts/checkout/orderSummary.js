@@ -6,7 +6,7 @@ import { formatCurrency } from "../utils/money.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
-import { isWeekend } from "../utils/dates.js";
+import { isWeekend, skipWeekend } from "../utils/dates.js";
 
 
 
@@ -91,15 +91,17 @@ export function renderOrderSummary() {
   let html = '';
 
   deliveryOptions.forEach((deliveryOption)=> {
-    const today = dayjs();
-    const deliveryDate = today.add(
+    const today = dayjs().add(1,'days');
+    let deliveryDate = today.add(
       deliveryOption.deliveryDays,
       'days'
     );
-    const dateString = deliveryDate.format(
+    /*let checkWeekend = deliveryDate.format('dddd');
+    deliveryDate = skipWeekend(checkWeekend); */
+    
+     const dateString = deliveryDate.format(
       'dddd, MMMM D'
     );
-   
 
     const priceString = deliveryOption.priceCents === 0
     ? 'FREE'
