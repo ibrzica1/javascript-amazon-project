@@ -92,7 +92,7 @@ export function renderOrderSummary() {
     );
     
     const dateString = skipWeekend(deliveryDate); 
-    console.log(dateString);
+    
     
     
 
