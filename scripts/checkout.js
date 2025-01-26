@@ -4,9 +4,11 @@ import { rendercheckoutHeader } from "./checkout/checkoutHeader.js";
 import { cart } from "../data/cart.js";
 //import '../data/cart-class.js';
 import '../data/car.js';
-import '../data/backend-practice.js'
+//import '../data/backend-practice.js;'
+import { loadProducts } from "../data/products.js";
 
-
-renderPaymentSummary();
-renderOrderSummary();
-rendercheckoutHeader(cart);
+loadProducts(()=>{
+  renderPaymentSummary();
+  renderOrderSummary();
+  rendercheckoutHeader(cart);
+});
