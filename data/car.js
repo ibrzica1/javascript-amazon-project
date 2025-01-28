@@ -62,8 +62,7 @@ model: 'Model 3',
 speed: 0,
 });
 
-console.log(car1.displayInfo());
-console.log(car2);
+
 
 class RaceCar extends Car {
   acceleration;
@@ -97,9 +96,7 @@ const raceCar1 = new RaceCar({
   acceleration: 20
 })
 
-raceCar1.openTrunk();
-raceCar1.go();
-raceCar1.displayInfo();
+
 
 
 
