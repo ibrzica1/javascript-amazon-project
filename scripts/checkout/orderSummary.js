@@ -79,6 +79,7 @@ export function renderOrderSummary() {
   </div>
   
   `;
+  console.log(matchingProduct);
   });
 
   function deliveryOptionsHTML(matchingProduct, cartItem) {
