@@ -27,18 +27,27 @@ function saveToStorage() {
 }
 
 export function addToCart(productId, addQuantity) {
+  
   let number1 = 0;
+  
   number1 = Number(addQuantity.value);
+  if (isNaN(number1)) {
+    number1 = Number(addQuantity);
+  }
+  
+  console.log(number1);
   let matchingItem;
 
   cart.forEach((cartItem)=>{
     if (productId === cartItem.productId) {
       matchingItem = cartItem;
+      
     }
   });
 
   if (matchingItem) {
     matchingItem.quantity += number1;
+    console.log(matchingItem.quantity);
   } else {
   cart.push({
     productId: productId,
